@@ -1,0 +1,58 @@
+" Setttings for vundle.
+set nocompatible
+filetype off
+
+" Set the runtime path to include Vundle and initialize.
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Start describing plugins under vundle control.
+call vundle#begin()
+
+" Let Vundle manage Vundle, required.
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" Plugin on GitHub repo.
+"Plugin 'tpope/vim-fugitive'
+" Plugin from http://vim-scripts.org/vim/scripts.html.
+"Plugin 'L9'
+" Git plugin not hosted on GitHub.
+"Plugin 'git://git.wincent.com/command-t.git'
+" Git repos on your local machine (i.e. when working on your own plugin).
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9.
+"Plugin 'user/L9', {'name': 'newL9'}
+
+" Plugin: fugitive.
+Plugin 'tpope/vim-fugitive'
+
+" Plugin: vimagit.
+Plugin 'jreybert/vimagit'
+
+" Plugin: vim-better-whitespace.
+Plugin 'ntpeters/vim-better-whitespace'
+
+" All of your Plugins must be added before the following line.
+call vundle#end()
+filetype plugin indent on
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+
+" Set menu language to English.
+set langmenu=en
+
+" Set the leader key.
+let mapleader = "`"
