@@ -101,8 +101,8 @@ endfunction
 
 function! StyleKernel()
     set noexpandtab
-    set tabstop=8
-    set shiftwidth=8
+    set tabstop=4
+    set shiftwidth=4
     set textwidth=80
     set cinoptions='(0,:0,l1'
     if g:rps_init == 0
