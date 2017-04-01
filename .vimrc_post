@@ -718,7 +718,7 @@ nnoremap <Leader>gm :Gmerge
 nnoremap <Leader>gco :Git checkout
 nnoremap <Leader>gl :execute ":silent Glog " <bar> :redraw! <bar> :bo copen<Home><C-Right><C-Right><C-Right><Right>
 nnoremap <Leader><Leader>gl :execute ":silent Glog " <bar> :redraw! <bar> :bo copen<cr>
-nnoremap <Leader>gg :execute ":silent Ggrep " <bar> :redraw! <bar> :bo copen<Home><C-Right><C-Right><C-Right><Right>
+nnoremap <Leader>gg :execute ":silent Ggrep '' " <bar> :redraw! <bar> :bo copen<Home><C-Right><C-Right><C-Right><Right><Right>
 
 augroup ft_fugitive
     au!
