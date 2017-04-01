@@ -17,7 +17,7 @@ function! ErrorFormat__FUJITSU_H61()
     set efm=%f:%l:%c:\ %tarning:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:%c:\ %trror:\ %m,%f:%l:\ %trror:\ %m
 endfunction
 
-function! ErrorFormat__CHECKPATCH_BTOC()
+function! ErrorFormat__CHECKPATCH()
     set efm=%WWARNING:\ %m,%C#%s:\ FILE:\ %f:%l:,%EERROR:\ %m,%C#%s:\ FILE:\ %f:%l:,%ICHECK:\ %m,%C#%s:\ FILE:\ %f:%l:
 endfunction
 
@@ -31,8 +31,15 @@ endfunction
 
 function! CheckpatchBtoc()
     let l:efm=&efm
-    call ErrorFormat__CHECKPATCH_BTOC()
+    call ErrorFormat__CHECKPATCH()
     cexpr system("ag -g \"\" --cc --cpp \| xargs checkpatch_btoc.pl -q -f") | bo copen
+    let &efm=l:efm
+endfunction
+
+function! CheckpatchLinux()
+    let l:efm=&efm
+    call ErrorFormat__CHECKPATCH()
+    cexpr system("ag -g \"\" --cc --cpp \| xargs /home/rps/scm/rps/kernels/linux_torvalds/scripts/checkpatch.pl -q -f") | bo copen
     let &efm=l:efm
 endfunction
 

@@ -181,6 +181,8 @@ noremap <F10> <C-w>o:mksession! session.vim <bar> qa<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Checks
 """"""""""""""""""""""""""""""""""""""""""""""""""
+" checkpatch
+map <Leader><Leader>cl :call CheckpatchLinux()<CR><CR><C-L>
 " checkpatch_btoc
 map <Leader><Leader>cb :call CheckpatchBtoc()<CR><CR><C-L>
 " cppcheck
