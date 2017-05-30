@@ -17,8 +17,12 @@ function! ErrorFormat__FUJITSU_H61()
     set efm=%f:%l:%c:\ %tarning:\ %m,%f:%l:\ %tarning:\ %m,%f:%l:%c:\ %trror:\ %m,%f:%l:\ %trror:\ %m
 endfunction
 
-function! ErrorFormat__CHECKPATCH()
+function! ErrorFormat__CHECKPATCH2()
     set efm=%WWARNING:\ %m,%C#%s:\ FILE:\ %f:%l:,%EERROR:\ %m,%C#%s:\ FILE:\ %f:%l:,%ICHECK:\ %m,%C#%s:\ FILE:\ %f:%l:
+endfunction
+
+function! ErrorFormat__CHECKPATCH()
+    set efm=%W%f:%l:\ WARNING:\ %m,%E%f:%l:\ ERROR:\ %m,%I%f:%l:\ CHECK:\ %m
 endfunction
 
 function! ErrorFormat__CPPCHECK2()
@@ -39,7 +43,7 @@ endfunction
 function! CheckpatchLinux()
     let l:efm=&efm
     call ErrorFormat__CHECKPATCH()
-    cexpr system("ag -g \"\" --cc --cpp \| xargs /home/rps/scm/rps/kernels/linux_torvalds/scripts/checkpatch.pl -q -f") | bo copen
+    cexpr system("ag -g \"\" --cc --cpp \| xargs /home/rps/scm/rps/kernels/linux/scripts/checkpatch.pl --terse --strict -q -f") | bo copen
     let &efm=l:efm
 endfunction
 
@@ -77,9 +81,22 @@ function! ToggleTabSpace()
     end
 endfunction
 
+function! StyleDefault()
+    set expandtab
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set textwidth=80
+    set cinoptions='l1'
+    if g:rps_init == 0
+        echo "Style: Default"
+    endif
+endfunction
+
 function! StyleWidgets()
     set expandtab
     set tabstop=4
+    set softtabstop=4
     set shiftwidth=4
     set textwidth=100
     set cinoptions='l1'
@@ -91,6 +108,7 @@ endfunction
 function! StyleBtoc()
     set expandtab
     set tabstop=8
+    set softtabstop=8
     set shiftwidth=8
     set textwidth=80
     set cinoptions='(0,:0,l1'
@@ -101,8 +119,9 @@ endfunction
 
 function! StyleKernel()
     set noexpandtab
-    set tabstop=4
-    set shiftwidth=4
+    set tabstop=8
+    set softtabstop=8
+    set shiftwidth=8
     set textwidth=80
     set cinoptions='(0,:0,l1'
     if g:rps_init == 0
@@ -113,6 +132,7 @@ endfunction
 function! StyleUtk()
     set expandtab
     set tabstop=2
+    set softtabstop=2
     set shiftwidth=2
     set textwidth=120
     set cinoptions='l1,g0.5,(1s'

@@ -53,13 +53,14 @@ set number
 set fileformats=unix,dos
 set foldcolumn=3
 
-call StyleWidgets()
+call StyleDefault()
 
 " Toggle between spell/nospell.
 map <Leader><Leader>p :call ToggleSpell()<CR>
 " Toggle between tabs and spaces.
 map <Leader><Leader>t :call ToggleTabSpace()<CR>
 " Switch to a specific style.
+map <Leader><Leader>d :call StyleDefault()<CR>
 map <Leader><Leader>b :call StyleBtoc()<CR>
 map <Leader><Leader>k :call StyleKernel()<CR>
 map <Leader><Leader>w :call StyleWidgets()<CR>
@@ -172,8 +173,8 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 " Save session in current dir.
 noremap <F9> :mksession! session.vim<CR>
 " Save current buffer.
-nmap <Leader><Space> :w!<CR>
-imap <Leader><Space> <Esc>:w!<CR><Esc>a
+"""nmap <Leader><Space> :w!<CR>
+"""imap <Leader><Space> <Esc>:w!<CR><Esc>a
 " Safe exit.
 noremap <F10> <C-w>o:mksession! session.vim <bar> qa<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -230,7 +231,7 @@ set nowrap
 set sidescroll=1
 set guioptions+=bh
 set formatoptions+=t
-set textwidth=100
+set textwidth=80
 set colorcolumn=+1
 set selectmode=mouse
 au GUIEnter * simalt ~x
@@ -709,7 +710,10 @@ nnoremap <Leader>gd :Gvdiff<cr>
 nnoremap <Leader>gr :Gread<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gb :Gblame<cr>
-nnoremap <Leader>gci :Gcommit<cr>
+nnoremap <Leader>gcc :Gcommit<cr>
+nnoremap <Leader>gca :Gcommit --ammend<cr>
+nnoremap <Leader>gcs :Gcommit -s<cr>
+nnoremap <Leader>gcr :Gcommit -s --ammend<cr>
 
 nnoremap <Leader>ge :Gedit
 nnoremap <Leader><Leader>ge :Gedit <cr>
@@ -719,6 +723,11 @@ nnoremap <Leader>gco :Git checkout
 nnoremap <Leader>gl :execute ":silent Glog " <bar> :redraw! <bar> :bo copen<Home><C-Right><C-Right><C-Right><Right>
 nnoremap <Leader><Leader>gl :execute ":silent Glog " <bar> :redraw! <bar> :bo copen<cr>
 nnoremap <Leader>gg :execute ":silent Ggrep '' " <bar> :redraw! <bar> :bo copen<Home><C-Right><C-Right><C-Right><Right><Right>
+
+nnoremap <Leader>grr oexec GIT_EDITOR="git rbrui" git commit --amend<ESC>0j
+nnoremap <Leader>gar oexec GIT_EDITOR="git abrui" git commit --amend<ESC>0j
+nnoremap <Leader>gra oexec GIT_EDITOR="git rband" git commit --amend<ESC>0j
+nnoremap <Leader>gaa oexec GIT_EDITOR="git aband" git commit --amend<ESC>0j
 
 augroup ft_fugitive
     au!
