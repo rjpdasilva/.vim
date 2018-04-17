@@ -36,6 +36,15 @@ Plugin 'jreybert/vimagit'
 " Plugin: vim-better-whitespace.
 Plugin 'ntpeters/vim-better-whitespace'
 
+" Plugin: vim-bitbake.
+Plugin 'kergoth/vim-bitbake'
+
+" Plugin: unite.
+Plugin 'Shougo/unite.vim'
+
+" Plugin: gtags.
+Plugin 'vim-scripts/gtags.vim'
+
 " All of your Plugins must be added before the following line.
 call vundle#end()
 filetype plugin indent on

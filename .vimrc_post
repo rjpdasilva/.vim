@@ -186,8 +186,12 @@ noremap <F10> <C-w>o:mksession! session.vim <bar> qa<cr>
 map <Leader><Leader>cl :call CheckpatchLinux()<CR><CR><C-L>
 " checkpatch_btoc
 map <Leader><Leader>cb :call CheckpatchBtoc()<CR><CR><C-L>
+" checkpatch_btoc
+map <Leader><Leader>cc :call CheckpatchLinuxOutOfTree()<CR><CR><C-L>
 " cppcheck
 map <Leader><Leader>cp :call Cppcheck()<CR><CR><C-L>
+" clang --analyze
+map <Leader><Leader>cf :call ClangCheck()<CR><CR><C-L>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -711,9 +715,9 @@ nnoremap <Leader>gr :Gread<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gb :Gblame<cr>
 nnoremap <Leader>gcc :Gcommit<cr>
-nnoremap <Leader>gca :Gcommit --ammend<cr>
+nnoremap <Leader>gca :Gcommit --amend<cr>
 nnoremap <Leader>gcs :Gcommit -s<cr>
-nnoremap <Leader>gcr :Gcommit -s --ammend<cr>
+nnoremap <Leader>gcr :Gcommit -s --amend<cr>
 
 nnoremap <Leader>ge :Gedit
 nnoremap <Leader><Leader>ge :Gedit <cr>
@@ -724,10 +728,12 @@ nnoremap <Leader>gl :execute ":silent Glog " <bar> :redraw! <bar> :bo copen<Home
 nnoremap <Leader><Leader>gl :execute ":silent Glog " <bar> :redraw! <bar> :bo copen<cr>
 nnoremap <Leader>gg :execute ":silent Ggrep '' " <bar> :redraw! <bar> :bo copen<Home><C-Right><C-Right><C-Right><Right><Right>
 
-nnoremap <Leader>grr oexec GIT_EDITOR="git rbrui" git commit --amend<ESC>0j
-nnoremap <Leader>gar oexec GIT_EDITOR="git abrui" git commit --amend<ESC>0j
-nnoremap <Leader>gra oexec GIT_EDITOR="git rband" git commit --amend<ESC>0j
-nnoremap <Leader>gaa oexec GIT_EDITOR="git aband" git commit --amend<ESC>0j
+nnoremap <Leader>grr oexec GIT_EDITOR="git rbrui" git commit --amend<ESC>0
+nnoremap <Leader>gar oexec GIT_EDITOR="git abrui" git commit --amend<ESC>0
+nnoremap <Leader>gra oexec GIT_EDITOR="git rband" git commit --amend<ESC>0
+nnoremap <Leader>gaa oexec GIT_EDITOR="git aband" git commit --amend<ESC>0
+nnoremap <Leader>grs oexec GIT_EDITOR="git rbser" git commit --amend<ESC>0
+nnoremap <Leader>gas oexec GIT_EDITOR="git abser" git commit --amend<ESC>0
 
 augroup ft_fugitive
     au!

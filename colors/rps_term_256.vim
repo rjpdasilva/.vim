@@ -14,7 +14,7 @@ hi User4                        ctermbg=darkblue    ctermfg=cyan
 hi User5                        ctermbg=darkblue    ctermfg=lightgreen
 
 " Normal Mode.
-hi Normal                       ctermfg=white       ctermbg=236
+hi Normal                       ctermfg=white       ctermbg=237
 
 " Search.
 hi Search       cterm=bold      ctermfg=black       ctermbg=214
@@ -81,7 +81,7 @@ hi Underlined   cterm=underline,bold ctermfg=white  ctermbg=red
 " Other.
 hi Directory    cterm=bold      ctermfg=113         ctermbg=none
 hi LineNr       cterm=none      ctermfg=250         ctermbg=none
-hi NonText      cterm=bold      ctermfg=45          ctermbg=236
+hi NonText      cterm=bold      ctermfg=45          ctermbg=237
 hi SpecialKey   cterm=bold      ctermfg=50          ctermbg=none
 hi Title        cterm=bold      ctermfg=white       ctermbg=none
 hi Visual       cterm=none      ctermfg=white       ctermbg=63
