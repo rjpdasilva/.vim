@@ -45,6 +45,27 @@ Plugin 'Shougo/unite.vim'
 " Plugin: gtags.
 Plugin 'vim-scripts/gtags.vim'
 
+" Plugin: unite: history/yank source.
+Plugin 'Shougo/neoyank.vim'
+
+" Plugin: unite: MRU sources.
+Plugin 'Shougo/neomru.vim'
+
+" Plugin: unite: tag source.
+Plugin 'tsukkee/unite-tag'
+
+" Plugin: unite: Quick Fix source.
+Plugin 'osyo-manga/unite-quickfix'
+
+" Plugin: unite: Outline source.
+Plugin 'Shougo/unite-outline'
+
+" Plugin: unite: Help source.
+Plugin 'Shougo/unite-help'
+
+" Plugin: unite: gtags.
+Plugin 'hewes/unite-gtags'
+
 " All of your Plugins must be added before the following line.
 call vundle#end()
 filetype plugin indent on

@@ -598,7 +598,7 @@ let g:unite_prompt = "> "
 let g:unite_source_grep_command="ag"
 let g:unite_source_grep_default_opts = "-p ~/.agignore -s --line-numbers --nocolor --nogroup --hidden"
 let g:unite_source_grep_recursive_opt = ""
-let g:unite_source_rec_async_command = "ag -p ~/.agignore --nocolor --nogroup -g ."
+let g:unite_source_rec_async_command = ['ag', '-p', '~/.agignore', '--nocolor', '--nogroup', '-g', '']
 
 " Customize unite buffer keys.
 function! s:unite_settings()
@@ -623,84 +623,88 @@ autocmd FileType unite call s:unite_settings()
 nmap <space> [unite]
 nnoremap [unite] <nop>
 
+" Just unite.
+nnoremap [unite]n   :Unite<cr>
+
 " Buffers.
-nnoremap [unite]b   :Unite -no-split -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap [unite]mb  :UniteWithCursorWord -no-split -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap [unite]B   :Unite -resume -no-split -auto-resize -buffer-name=buffers buffer<cr>
+nnoremap [unite]b   :Unite -auto-resize -buffer-name=buffers buffer<cr>
+nnoremap [unite]mb  :UniteWithCursorWord -auto-resize -buffer-name=buffers buffer<cr>
+nnoremap [unite]B   :Unite -resume -auto-resize -buffer-name=buffers buffer<cr>
 " Files.
-nnoremap [unite]f   :Unite -no-split -auto-resize -buffer-name=files file_rec/async<cr>
-nnoremap [unite]mf  :UniteWithCursorWord -no-split -auto-resize -buffer-name=files file_rec/async<cr>
-nnoremap [unite]F   :Unite -resume -no-split -auto-resize -buffer-name=files file_rec/async<cr>
+nnoremap [unite]f   :Unite -auto-resize -buffer-name=files file_rec<cr>
+nnoremap [unite]mf  :UniteWithCursorWord -auto-resize -buffer-name=files file_rec<cr>
+nnoremap [unite]F   :Unite -resume -auto-resize -buffer-name=files file_rec<cr>
 " Tags.
-nnoremap [unite]t   :Unite -no-split -auto-resize -auto-preview -buffer-name=tags tag<cr>
-nnoremap [unite]mt  :UniteWithCursorWord -no-split -auto-resize -auto-preview -buffer-name=tags tag<cr>
-nnoremap [unite]T   :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=tags tag<cr>
+nnoremap [unite]t   :Unite -auto-resize -auto-preview -buffer-name=tags tag<cr>
+nnoremap [unite]mt  :UniteWithCursorWord -auto-resize -auto-preview -buffer-name=tags tag<cr>
+nnoremap [unite]T   :Unite -resume -auto-resize -auto-preview -buffer-name=tags tag<cr>
 " Global/Gtags.
 " Generate/Update gtags.
 nnoremap [unite]gg  :execute ":silent !" . g:rps_gtags_prg . " &"<cr><c-l>
+nnoremap [unite]gh  :Unite -auto-resize -auto-preview -buffer-name=gtags_compl gtags/completion<CR>
 
 nnoremap [unite]gt  :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_def gtags/def<CR>
-nnoremap [unite]gT  :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=gtags_def gtags/def<CR>
+nnoremap [unite]gT  :Unite -no-split -resume -auto-resize -auto-preview -buffer-name=gtags_def gtags/def<CR>
 nnoremap [unite]gd  :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_def gtags/def:
-nnoremap [unite]gD  :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=gtags_def gtags/def<CR>
+nnoremap [unite]gD  :Unite -no-split -resume -auto-resize -auto-preview -buffer-name=gtags_def gtags/def<CR>
 nnoremap [unite]mgt :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_def gtags/def:
 vnoremap [unite]gt  <ESC>:execute "Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_def gtags/def:".GetVisualSelection()<CR>
 
 nnoremap [unite]gc  :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_ctx gtags/context<CR>
-nnoremap [unite]gC  :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=gtags_ctx gtags/context<CR>
+nnoremap [unite]gC  :Unite -no-split -resume -auto-resize -auto-preview -buffer-name=gtags_ctx gtags/context<CR>
 nnoremap [unite]mgc :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_ctx gtags/context:
 
 nnoremap [unite]gr  :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_ref gtags/ref<CR>
-nnoremap [unite]gR  :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=gtags_ref gtags/ref<CR>
+nnoremap [unite]gR  :Unite -no-split -resume -auto-resize -auto-preview -buffer-name=gtags_ref gtags/ref<CR>
 nnoremap [unite]mgr :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_ref gtags/ref:
 
 nnoremap [unite]gf  :Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_grep gtags/grep<CR>
 nnoremap [unite]mgf :execute "Unite -no-split -auto-resize -auto-preview -buffer-name=gtags_grep gtags/grep:".expand('<cword>')<CR>
-nnoremap [unite]gF  :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=gtags_grep gtags/grep<CR>
+nnoremap [unite]gF  :Unite -no-split -resume -auto-resize -auto-preview -buffer-name=gtags_grep gtags/grep<CR>
 " MRU.
-nnoremap [unite]uf  :Unite -no-split -auto-resize -buffer-name=mru_f file_mru<cr>
-nnoremap [unite]muf :UniteWithCursorWord -no-split -auto-resize -buffer-name=mru_f file_mru<cr>
-nnoremap [unite]uF  :Unite -resume -no-split -auto-resize -buffer-name=mru_f file_mru<cr>
+nnoremap [unite]uf  :Unite -auto-resize -buffer-name=mru_f file_mru<cr>
+nnoremap [unite]muf :UniteWithCursorWord -auto-resize -buffer-name=mru_f file_mru<cr>
+nnoremap [unite]uF  :Unite -resume -auto-resize -buffer-name=mru_f file_mru<cr>
 
-nnoremap [unite]ud  :Unite -no-split -auto-resize -buffer-name=mru_d directory_mru<cr>
-nnoremap [unite]mud :UniteWithCursorWord -no-split -auto-resize -buffer-name=mru_d directory_mru<cr>
-nnoremap [unite]uD  :Unite -resume -no-split -auto-resize -buffer-name=mru_d directory_mru<cr>
+nnoremap [unite]ud  :Unite -auto-resize -buffer-name=mru_d directory_mru<cr>
+nnoremap [unite]mud :UniteWithCursorWord -auto-resize -buffer-name=mru_d directory_mru<cr>
+nnoremap [unite]uD  :Unite -resume -auto-resize -buffer-name=mru_d directory_mru<cr>
 " Yanks.
-nnoremap [unite]y   :Unite -no-split -auto-resize -buffer-name=yanks history/yank<cr>
-nnoremap [unite]my  :UniteWithCursorWord -no-split -auto-resize -buffer-name=yanks history/yank<cr>
-nnoremap [unite]Y   :Unite -resume -no-split -auto-resize -buffer-name=yanks history/yank<cr>
+nnoremap [unite]y   :Unite -auto-resize -buffer-name=yanks history/yank<cr>
+nnoremap [unite]my  :UniteWithCursorWord -auto-resize -buffer-name=yanks history/yank<cr>
+nnoremap [unite]Y   :Unite -resume -auto-resize -buffer-name=yanks history/yank<cr>
 " Registers.
-nnoremap [unite]r   :Unite -no-split -auto-resize -buffer-name=regs register<cr>
-nnoremap [unite]mr  :UniteWithCursorWord -no-split -auto-resize -buffer-name=regs register<cr>
-nnoremap [unite]R   :Unite -resume -no-split -auto-resize -buffer-name=regs register<cr>
+nnoremap [unite]r   :Unite -auto-resize -buffer-name=regs register<cr>
+nnoremap [unite]mr  :UniteWithCursorWord -auto-resize -buffer-name=regs register<cr>
+nnoremap [unite]R   :Unite -resume -auto-resize -buffer-name=regs register<cr>
 " Lines.
-nnoremap [unite]l   :Unite -no-split -auto-resize -auto-preview -buffer-name=lines line<cr>
-nnoremap [unite]ml  :UniteWithCursorWord -no-split -auto-resize -auto-preview -buffer-name=lines line<cr>
-nnoremap [unite]L   :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=lines line<cr>
+nnoremap [unite]l   :Unite -auto-resize -auto-preview -buffer-name=lines line<cr>
+nnoremap [unite]ml  :UniteWithCursorWord -auto-resize -auto-preview -buffer-name=lines line<cr>
+nnoremap [unite]L   :Unite -resume -auto-resize -auto-preview -buffer-name=lines line<cr>
 " Bookmarks.
-nnoremap [unite]'   :Unite -no-split -auto-resize -buffer-name=line bookmark<cr>
+nnoremap [unite]'   :Unite -auto-resize -buffer-name=line bookmark<cr>
 nnoremap [unite]"   :UniteBookmarkAdd<cr>
 " Grep.
-nnoremap [unite]/   :Unite -no-split -auto-resize -auto-preview -buffer-name=search grep:**:-i<cr>
-nnoremap [unite]m/  :execute "Unite -no-split -auto-resize -auto-preview -buffer-name=search grep:**:-w:".expand('<cword>')<cr>
-nnoremap [unite]x/  :execute "Unite -no-split -auto-resize -auto-preview -buffer-name=search grep:**:-wi:".expand('<cword>')<cr>
-nnoremap [unite]?   :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=search grep<cr>
+nnoremap [unite]/   :Unite -auto-resize -auto-preview -buffer-name=search grep:**:-i<cr>
+nnoremap [unite]m/  :execute "Unite -auto-resize -auto-preview -buffer-name=search grep:**:-w:".expand('<cword>')<cr>
+nnoremap [unite]x/  :execute "Unite -auto-resize -auto-preview -buffer-name=search grep:**:-wi:".expand('<cword>')<cr>
+nnoremap [unite]?   :Unite -resume -auto-resize -auto-preview -buffer-name=search grep<cr>
 " Outline.
-nnoremap [unite]o   :Unite -no-split -auto-resize -auto-preview -buffer-name=outline outline<cr>
-nnoremap [unite]mo  :UniteWithCursorWord -no-split -auto-resize -buffer-name=outline outline<cr>
-nnoremap [unite]O   :Unite -resume -no-split -auto-resize -auto-preview -buffer-name=outline outline<cr>
+nnoremap [unite]o   :Unite -auto-resize -auto-preview -buffer-name=outline outline<cr>
+nnoremap [unite]mo  :UniteWithCursorWord -auto-resize -buffer-name=outline outline<cr>
+nnoremap [unite]O   :Unite -resume -auto-resize -auto-preview -buffer-name=outline outline<cr>
 " Commands.
-nnoremap [unite]c   :Unite -no-split -auto-resize -buffer-name=commands command<cr>
-nnoremap [unite]mc  :UniteWithCursorWord -no-split -auto-resize -buffer-name=commands command<cr>
-nnoremap [unite]C   :Unite -resume -no-split -auto-resize -buffer-name=commands command<cr>
+nnoremap [unite]c   :Unite -auto-resize -buffer-name=commands command<cr>
+nnoremap [unite]mc  :UniteWithCursorWord -auto-resize -buffer-name=commands command<cr>
+nnoremap [unite]C   :Unite -resume -auto-resize -buffer-name=commands command<cr>
 " Outputs.
-nnoremap [unite]xo  :Unite -no-split -auto-resize -buffer-name=outputs output<cr>
-nnoremap [unite]xmo :UniteWithCursorWord -no-split -auto-resize -buffer-name=outputs output<cr>
-nnoremap [unite]xO  :Unite -resume -no-split -auto-resize -buffer-name=outputs output<cr>
+nnoremap [unite]xo  :Unite -auto-resize -buffer-name=outputs output<cr>
+nnoremap [unite]xmo :UniteWithCursorWord -auto-resize -buffer-name=outputs output<cr>
+nnoremap [unite]xO  :Unite -resume -auto-resize -buffer-name=outputs output<cr>
 " Sources.
-nnoremap [unite]s   :Unite -no-split -auto-resize -buffer-name=sources source<cr>
-nnoremap [unite]ms  :UniteWithCursorWord -no-split -auto-resize -buffer-name=sources source<cr>
-nnoremap [unite]S   :Unite -resume -no-split -auto-resize -buffer-name=sources source<cr>
+nnoremap [unite]s   :Unite -auto-resize -buffer-name=sources source<cr>
+nnoremap [unite]ms  :UniteWithCursorWord -auto-resize -buffer-name=sources source<cr>
+nnoremap [unite]S   :Unite -resume -auto-resize -buffer-name=sources source<cr>
 
 " Favorite commands.
 nnoremap [unite]a   :Unite menu:favorite_commands<cr>
