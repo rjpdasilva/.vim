@@ -41,3 +41,6 @@ doc/tags
 
 ## Vundle stuff.
 bundle/
+
+## Spell check stuff.
+spell/

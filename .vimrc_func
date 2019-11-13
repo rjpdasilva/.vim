@@ -71,7 +71,7 @@ endfunction
 function! ClangCheck()
     let l:efm=&efm
     call ErrorFormat__ErrorFormat__GCC()
-    cexpr system("ag -g \".*\\\.c$\" \| xargs clang --analyze --analyzer-output text") | bo copen
+    cexpr system("ag -g \".*\\\.(c\\|cpp)$\" \| xargs clang --analyze --analyzer-output text") | bo copen
     let &efm=l:efm
 endfunction
 

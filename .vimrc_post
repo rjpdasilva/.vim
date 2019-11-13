@@ -743,13 +743,13 @@ augroup ft_fugitive
     au!
     autocmd BufReadPost fugitive://* set bufhidden=delete
     au BufNewFile,BufRead .git/index setlocal nolist
-    autocmd BufWritePost * call fugitive#reload_status()
+    autocmd BufWritePost * call fugitive#ReloadStatus()
     autocmd User Fugitive
-        \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+        \ if get(b:, 'fugitive_type', '') =~# '^\%(tree\|blob\)$' |
         \   nnoremap <buffer> <Leader>1 :edit %:h<CR> |
         \ endif
     autocmd BufReadPost fugitive://*
-        \ if fugitive#buffer().type() =~# '^\%(commit\)$' |
+        \ if get(b:, 'fugitive_type', '') =~# '^\%(commit\)$' |
         \   setlocal foldlevel=99 |
         \ endif
 augroup END
